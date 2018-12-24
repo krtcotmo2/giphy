@@ -48,20 +48,20 @@ let gifSetter = {
 		})
 		$('#theModal').modal();
 	},
-	addButton: function (arg) {
-		let btn = $(`<button class='btnActor'>${arg}</button>`);
-		btn.attr("data-name", arg);
-		btnList.push(arg);
+	addButton: function (nameOnbtn) {
+		let btn = $(`<button class='btnActor'>${nameOnbtn}</button>`);
+		btn.attr("data-name", nameOnbtn);
+		btnList.push(nameOnbtn);
 		return btn;
 	},
-	checkName: function (arg, match,  callback) {
+	checkName: function (theName, match,  callback) {
 		let potentail = [];
 		peeps.forEach(function (o) {
-			if (o.toLowerCase().includes(arg) && !match) {
+			if (o.toLowerCase().includes(theName) && !match) {
 				potentail.push(o);
 				person = o;
 			}
-			if (o.toLowerCase() == arg && match) {
+			if (o.toLowerCase() == theName && match) {
 				potentail.push(o);
 				person = o;
 			}
