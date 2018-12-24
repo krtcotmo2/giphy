@@ -1,0 +1,59 @@
+html, body{
+	background: url(../images/stars.png) repeat, #010914;
+	height:100%;
+	width:100%;
+}
+footer{
+	position: fixed;
+	bottom: 0px;
+	height: 62px;
+	width:100%;
+	background: url(../images//hills.png)
+}
+footer img{
+	float: right;
+	height: 32px;
+	margin-right: 144px;
+	margin-top: 15px;
+}
+h5{color:white; padding:12px;}
+.neon{
+	margin:0 auto;
+	background:url(../images/neonSign.png);
+	height: 191px;
+	width:662px;
+}
+.btnHolder{
+ padding: 0px 60px;
+ background: url(../images/oscar.png) no-repeat, url(../images/oscar.png) no-repeat;
+ background-position: 0 0, 100% 0;
+ min-height: 160px;
+}
+.btnActor, .oneOfMany {
+	margin: 6px 6px;
+ }
+.container{
+	margin-bottom:24px;
+	width:90%
+}
+.gifHolder{
+	padding-bottom:96px;
+}
+.aGif{ padding:12px;}
+
+@media (max-width: 768px){
+	.neon{display:none;}
+	.btnHolder{
+		margin-top:24px;
+	}
+}
+
+@media (max-width: 500px){
+	.btnHolder{
+		padding: 0px 60px;
+		background: url(../images/oscar.png) no-repeat, url(../images/oscar.png) no-repeat;
+		background-position: 0 0, 100% 0;
+		height: 160px;
+		overflow: auto
+	    }
+}
