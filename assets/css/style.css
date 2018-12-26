@@ -31,6 +31,10 @@ h5{color:white; padding:12px;}
 }
 .btnActor, .oneOfMany {
 	margin: 6px 6px;
+	background:url(../images/awardIcon.png), #f5ce21;
+	background-repeat:no-repeat;
+	padding-left:20px;
+	height: 32px;
  }
 .container{
 	margin-bottom:24px;

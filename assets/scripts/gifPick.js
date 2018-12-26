@@ -8,7 +8,6 @@ let gifSetter = {
 			url: queryURL,
 			method: "GET"
 		}).then(function (response) {
-			console.log(response);
 			let grpHolder = $("<div>").append(`<h5>${arg.replace("+", " ")}</h5>`);
 			response.data.forEach(function (o) {
 				let img = $("<img>").attr("data-ani", o.images.fixed_height_small.url)
@@ -29,7 +28,8 @@ let gifSetter = {
 				});
 			});
 		}).catch(function (response) {
-			console.log("error");
+			$(".modal-body").html("There was an error attempting to get information from Giphy.com.");
+			$('#theModal').modal();
 		});
 	},
 	offerOptions: function (arg) {
@@ -51,6 +51,7 @@ let gifSetter = {
 	addButton: function (nameOnbtn) {
 		let btn = $(`<button class='btnActor'>${nameOnbtn}</button>`);
 		btn.attr("data-name", nameOnbtn);
+		
 		btnList.push(nameOnbtn);
 		return btn;
 	},
