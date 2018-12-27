@@ -17,15 +17,6 @@ let gifSetter = {
 				.attr("class", "aGif");
 				grpHolder.append(img)
 				$(".gifHolder").prepend(grpHolder);
-				img.on("click", function () {					
-					if($(this).data("playing") === false){
-						$(this).data("playing", true);
-						$(this).attr("src", $(this).data("ani"));
-					}else{
-						$(this).data("playing", false);
-						$(this).attr("src", $(this).data("still"));
-					}
-				});
 			});
 		}).catch(function (response) {
 			$(".modal-body").html("There was an error attempting to get information from Giphy.com.");
@@ -40,18 +31,17 @@ let gifSetter = {
 			let btn = $(`<button class='oneOfMany'>${arg[d]}</button>`);
 			$(".modal-body").append(btn);
 		}
-		let instance = this;
-		$(".oneOfMany").on("click", function(){
-			instance.checkName(this.innerText.toLowerCase(), true, instance.getGifs);
-			peeps = peeps.filter( x => x != this.innerText)
-			$('#theModal').modal('hide');
-		})
+		//let instance = this;
+		// $(".oneOfMany").on("click", function(){
+		// 	instance.checkName(this.innerText.toLowerCase(), true, instance.getGifs);
+		// 	peeps = peeps.filter( x => x != this.innerText)
+		// 	$('#theModal').modal('hide');
+		// })
 		$('#theModal').modal();
 	},
 	addButton: function (nameOnbtn) {
 		let btn = $(`<button class='btnActor'>${nameOnbtn}</button>`);
-		btn.attr("data-name", nameOnbtn);
-		
+		btn.attr("data-name", nameOnbtn);		
 		btnList.push(nameOnbtn);
 		return btn;
 	},
@@ -89,13 +79,9 @@ let gifSetter = {
 		}
 	},
 	startBtnList: function () {
-		let instance = this;
 		for (let d = 0; d < 10; d++) {
 			let nameIndex = Math.floor(Math.random() * peeps.length);
-			let btn = this.addButton(peeps[nameIndex]).on("click", function(){
-				instance.getGifs(this.innerText);
-				$("#tboxActor").val("");
-			});
+			let btn = this.addButton(peeps[nameIndex]);
 			$(".btnHolder").append(btn);
 			peeps.splice(nameIndex, 1);
 		}

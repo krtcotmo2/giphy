@@ -1,62 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="./assets/css/reset.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	 crossorigin="anonymous">
 	<link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
 	<div class="neon"></div>
 	<div class="container btnHolder">
 
 	</div>
 	<div class="container">
-		<input type="text" id="tboxActor"/><button id="btnSearch">Search</button>
+		<input type="text" id="tboxActor" /><button id="btnSearch">Search</button>
 	</div>
 	<div class="container gifHolder">
-		
+
 	</div>
 	<footer>
-		<img src="./assets/images/hollySign.png"/>
+		<img src="./assets/images/hollySign.png" />
 	</footer>
-	<div id="theModal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div id="theModal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	 aria-hidden="true">
 		<div class="modal-dialog" role="document">
-		  <div class="modal-content">
-		    <div class="modal-header">
-			 <p class="modal-title" id="exampleModalLabel">Note:</p>
-		    </div>
-		    <div class="modal-body"></div>
-		    <div class="modal-footer justify-content-center">
-			    <button>OK</button>
-		    </div>
-		  </div>
+			<div class="modal-content">
+				<div class="modal-header">
+					<p class="modal-title" id="exampleModalLabel">Note:</p>
+				</div>
+				<div class="modal-body"></div>
+				<div class="modal-footer justify-content-center">
+					<button>OK</button>
+				</div>
+			</div>
 		</div>
-	   </div>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	 crossorigin="anonymous"></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-	<script src="./assets/scripts/gifPick.js" ></script>
-	<script type='text/javascript'> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	 crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	 crossorigin="anonymous"></script>
+	<script src="./assets/scripts/gifPick.js"></script>
+	<script type='text/javascript'>
 
-	$(document).ready(function(){
-		gifSetter.startBtnList();
-		$("#btnSearch").on("click", function(){
-			gifSetter.checkName($("#tboxActor").val().trim().toLowerCase(), false, gifSetter.getGifs);
-		});
-		$(".modal-footer button").on("click", function(){
-			$('#theModal').modal("hide");
-		})
-		$("#tboxActor").on("keypress", function(evt){
-			if(evt.charCode === 13){
+		$(document).ready(function () {
+			gifSetter.startBtnList();
+			$("#btnSearch").on("click", function () {
 				gifSetter.checkName($("#tboxActor").val().trim().toLowerCase(), false, gifSetter.getGifs);
-			}
+			});
+			$(".modal-footer button").on("click", function () {
+				$('#theModal').modal("hide");
+			})
+			$("#tboxActor").on("keypress", function (evt) {
+				if (evt.charCode === 13) {
+					gifSetter.checkName($("#tboxActor").val().trim().toLowerCase(), false, gifSetter.getGifs);
+				}
+			});
+			$(document).on("click", ".aGif", function () {
+				$(this).attr("src", $(this).attr("src") === $(this).data("ani") ? $(this).data("still") : $(this).data("ani"));
+				$(this).data("playing", $(this).data("playing") === false ? true : false);
+			})
+			$(document).on("click", ".btnActor", function () {
+				gifSetter.getGifs(this.innerText);
+				$("#tboxActor").val("");
+			});
+			$(document).on("click", ".oneOfMany", function () {
+				gifSetter.checkName(this.innerText.toLowerCase(), true, gifSetter.getGifs);
+				peeps = peeps.filter(x => x != this.innerText)
+				$('#theModal').modal('hide');
+			})
 		});
-	});
 
-	</script> 
+	</script>
 </body>
+
 </html>
