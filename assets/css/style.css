@@ -29,7 +29,7 @@ h5{color:white; padding:12px;}
  background-position: 0 0, 100% 0;
  min-height: 160px;
 }
-.btnActor, .oneOfMany {
+.btnActor, .oneOfMany , #btnSearch{
 	margin: 6px 6px;
 	background:url(../images/awardIcon.png), #f5ce21;
 	background-repeat:no-repeat;
