@@ -1,10 +1,11 @@
 let peeps = [`Gary Oldman`, `Casey Affleck`, `Leonardo DiCaprio`, `Eddie Redmayne`, `Matthew McConaughey`, `Jean Dujardin`, `Colin Firth`, `Jeff Bridges`, `Forest Whitaker`, `Philip Seymour Hoffman`, `Jamie Foxx`, `Sean Penn`, `Adrien Brody`, `Denzel Washington`, `Russell Crowe`, `Kevin Spacey`, `Roberto Benigni`, `Geoffrey Rush`, `Nicolas Cage`, `Tom Hanks`, `Al Pacino`, `Anthony Hopkins, Sir`, `Jeremy Irons`, `Daniel Day-Lewis`, `Michael Douglas`, `Paul Newman`, `William Hurt`, `F. Murray Abraham`, `Robert Duvall`, `Ben Kingsley`, `Henry Fonda`, `Robert De Niro`, `Dustin Hoffman`, `Jon Voight`, `Richard Dreyfuss`, `Peter Finch`, `Jack Nicholson`, `Art Carney`, `Jack Lemmon`, `Gene Hackman`, `George C. Scott`, `John Wayne`, `Cliff Robertson`, `Rod Steiger`, `Paul Scofield`, `Lee Marvin`, `Rex Harrison`, `Sidney Poitier`, `Gregory Peck`, `Maximilian Schell`, `Burt Lancaster`, `Charlton Heston`, `David Niven`, `Alec Guinness`, `Yul Brynner`, `Ernest Borgnine`, `Marlon Brando`, `William Holden`, `Humphrey Bogart`, `José Ferrer`, `Broderick Crawford`, `Laurence Olivier`, `Ronald Colman`, `Fredric March`, `Ray Milland`, `Bing Crosby`, `Paul Lukas`, `James Cagney`, `Gary Cooper`, `James Stewart`, `Robert Donat`, `Spencer Tracy`, `Paul Muni`, `Victor McLaglen`, `Clark Gable`, `Charles Laugthon`, `Wallace Beery`, `Frederic March`, `Lionel Barrymore`, `George Arliss`, `Warner Baxter`, `Emil Jannings`, `Emma Stone`, `Brie Larson`, `Julianne Moore`, `Cate Blanchett`, `Jennifer Lawrence`, `Natalie Portman`, `Sandra Bullock`, `Kate Winslet`, `Marion Cotillard`, `Helen Mirren Dame`, `Reese Witherspoon`, `Charlize Theron`, `Nicole Kidman`, `Halle Berry`, `Julia Roberts`, `Hilary Swank`, `Gwyneth Paltrow`, `Helen Hunt`, `Frances McDormand`, `Susan Sarandon`, `Jessica Lange`, `Holly Hunter`, `Emma Thompson`, `Kathy Bates`, `Jessica Tandy`, `Jodie Foster`, `Cher`, `Marlee Matlin`, `Geraldine Page`, `Shirley MacLaine`, `Meryl Streep`, `Sissy Spacek`, `Sally Field`, `Diane Keaton`, `Faye Dunaway`, `Louise Fletcher`, `Ellen Burstyn`, `Liza Minnelli`, `Jane Fonda`, `Glenda Jackson`, `Maggie Smith`, `Barbra Streisand`, `Julie Christie`, `Julie Andrews`, `Patricia Neal`, `Anne Bancroft`, `Sophia Loren`, `Elizabeth Taylor`, `Simone Signoret`, `Susan Hayward`, `Joanne Woodward`, `Anna Magnani`, `Grace Kelly`, `Audrey Hepburn`, `Shirley Booth`, `Judy Holliday`, `Jane Wyman`, `Loretta Young`, `Olivia de Havilland`, `Joan Crawford`, `Ingrid Bergman`, `Jennifer Jones`, `Greer Garson`, `Joan Fontaine`, `Ginger Rogers`, `Vivien Leigh`, `Luise Rainer`, `Bette Davis`, `Claudette Colbert`, `Katharine Hepburn`, `Helen Hayes`, `Marie Dressler`, `Norma Shearer`, `Mary Pickford`, `Janet Gaynor`];
 let btnList = [];
 let gifSetter = {
-	getGifs: function (arg) {
+	getGifs: function (arg, offset) {
 		//URL for gif - paramter for query at end
+		let limit = 10;
 		arg = arg.replace(" ", "+");
-		var queryURL = `https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&limit=10&q=${arg}`;
+		var queryURL = `https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&limit=${limit}&offset=${offset*limit}&q=${arg}`;
 		
 		//AJAX CALL
 		$.ajax({
@@ -21,18 +22,18 @@ let gifSetter = {
 				.attr("data-still", o.images.fixed_height_small_still.url)
 				.attr("src", o.images.fixed_height_small_still.url);
 				//adds gif to the holder
-				
+				/*
 				let theDiv = $("<div>");
-				let ref = $("<a class='btn btn-danger' role='button'>Download</a>");				
+				let ref = $("<a class='btn btn-danger' role='button' rel='nofollow'>Download</a>");				
 				ref.attr("href", `${o.images["480w_still"].url.split(`?`)[0]}`);
 				ref.attr("download", `${arg}.${o.images["480w_still"].url.split(`?`)[0].split("/").pop().split(".").pop()}`);
-				
 				theDiv.append(img);
 				theDiv.append(ref);
-				
 				grpHolder.append(theDiv);
+				*/
+				grpHolder.append(img);
 				$(".gifHolder").prepend(grpHolder);
-			});
+			});			
 		}).catch(function (response) {
 			//error if the giphy api fails
 			$(".modal-body").html("There was an error attempting to get information from Giphy.com.");
@@ -55,7 +56,7 @@ let gifSetter = {
 	addButton: function (nameOnbtn) {
 		//creates a button for the check name and game start function
 		let btn = $(`<button class='btnActor'>${nameOnbtn}</button>`);
-		btn.attr("data-name", nameOnbtn);		
+		btn.attr({"data-name":nameOnbtn,  "data-page":"1"});		
 		btnList.push(nameOnbtn);
 		return btn;
 	},

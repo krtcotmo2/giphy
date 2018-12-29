@@ -66,7 +66,8 @@
 			});
 			//EVENTS FOR DYNAMIC ITEMS
 			$(document).on("click", ".btnActor", function () {
-				gifSetter.getGifs(this.innerText);
+				gifSetter.getGifs(this.innerText, this.dataset["page"]);
+				$(this).attr("data-page", parseInt(this.dataset["page"])+1)
 				$("#tboxActor").val("");
 			});
 			$(document).on("click", ".oneOfMany", function () {
