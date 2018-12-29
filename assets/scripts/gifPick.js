@@ -21,7 +21,16 @@ let gifSetter = {
 				.attr("data-still", o.images.fixed_height_small_still.url)
 				.attr("src", o.images.fixed_height_small_still.url);
 				//adds gif to the holder
-				grpHolder.append(img)
+				
+				let theDiv = $("<div>");
+				let ref = $("<a class='btn btn-danger' role='button'>Download</a>");				
+				ref.attr("href", `${o.images["480w_still"].url.split(`?`)[0]}`);
+				ref.attr("download", `${arg}.${o.images["480w_still"].url.split(`?`)[0].split("/").pop().split(".").pop()}`);
+				
+				theDiv.append(img);
+				theDiv.append(ref);
+				
+				grpHolder.append(theDiv);
 				$(".gifHolder").prepend(grpHolder);
 			});
 		}).catch(function (response) {
