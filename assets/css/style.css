@@ -29,13 +29,14 @@ h5{color:white; padding:12px;}
  background-position: 0 0, 100% 0;
  min-height: 160px;
 }
-.btnActor, .oneOfMany , #btnSearch{
+.btnActor, .oneOfMany , #btnSearch, #btnFvs{
 	margin: 6px 6px;
 	background:url(../images/awardIcon.png), #f5ce21;
 	background-repeat:no-repeat;
 	padding-left:20px;
 	height: 32px;
  }
+ #btnFvs{float:right;}
 .container{
 	margin-bottom:24px;
 	width:90%
@@ -44,7 +45,23 @@ h5{color:white; padding:12px;}
 	padding-bottom:96px;
 }
 .aGif{ padding:12px;}
-
+.singleGif{
+	display:inline-block;
+	position: relative;
+}
+.favs{
+	position: absolute;
+	width:30px;
+	height: 30px;
+	background: rgba(225,1,1,0.3);
+	top:16px;
+	right:16px;
+	background: url(../images/notLiked.png);
+	cursor: pointer;
+}
+.liked{
+	background: url(../images/liked.png);
+}
 @media (max-width: 768px){
 	.neon{display:none;}
 	.btnHolder{
