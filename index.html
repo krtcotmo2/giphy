@@ -50,7 +50,7 @@
 			gifSetter.startBtnList();
 			//EVENTS FOR PAGE ITEMS
 			$("#btnSearch").on("click", function () {
-				gifSetter.checkName($("#tboxActor").val().trim().toLowerCase(), false, apiCaller.getGifs);
+				gifSetter.checkName($("#tboxActor").val().trim().toLowerCase(), false, gifSetter.getGifs);
 			});			
 			$("#tboxActor").on("keypress", function (evt) {
 				if (evt.charCode === 13) {
